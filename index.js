@@ -9,7 +9,7 @@ app.get("/:statusCode", (req, res) => {
   res.status(statusCode).json({ status: statusCode });
 });
 
-const port = 8080;
+const port = 443;
 
 app.listen(port, () => {
   console.log(`running on port :${port}`);

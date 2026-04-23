@@ -2,7 +2,17 @@
 set -e
 
 SERVICE_NAME="debug-server"
-DIR="$(cd "$(dirname "$0")" && pwd)"
+REPO="https://github.com/targc/debug-server.git"
+DIR="/opt/debug-server"
+
+# Clone or pull repo (needed when run via curl | bash)
+if [ -d "$DIR/.git" ]; then
+  echo "Updating repo..."
+  git -C "$DIR" pull
+else
+  echo "Cloning repo..."
+  git clone "$REPO" "$DIR"
+fi
 
 # Ensure bun is installed
 if ! command -v bun &>/dev/null; then
